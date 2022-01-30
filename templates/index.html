@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <style>
+        body {
+           background-image: url("");
+           background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        body {
+  background: #ddd;
+  font: 14px/1.6em sans-serif;
+}
+
+.ribbon {
+  width: 800px;
+  height: 80px;
+  margin: 20px auto 0px;
+  position: relative;
+  color: #fff;
+  font: 28px/60px sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  background: #3D79D0;
+  -webkit-animation: main 250ms;
+  -moz-animation: main 250ms;
+  -ms-animation: main 250ms;
+  animation: main 250ms;
+}
+
+.ribbon i {
+  position: absolute;
+}
+
+.ribbon i:first-child, .ribbon i:nth-child(2) {
+  position: absolute;
+  left: -20px;
+  bottom: -20px;
+  z-index: -1;
+  border: 20px solid transparent;
+  border-right-color: #043140;
+  
+  -webkit-animation: edge 500ms;
+  -moz-animation: edge 500ms;
+  -ms-animation: edge 500ms;
+  animation: edge 500ms;
+}
+
+.ribbon i:nth-child(2) {
+  left: auto;
+  right: -20px;
+  border-right-color: transparent;
+  border-left-color: #043140;
+}
+
+.ribbon i:nth-child(3), .ribbon i:last-child {
+  width: 20px;
+  bottom: -20px;
+  left: -60px;
+  z-index: -2;
+  border: 30px solid #1D53C0;
+  border-left-color: transparent;
+  
+  -webkit-animation: back 600ms;
+  -moz-animation: back 600ms;
+  -ms-animation: back 600ms;
+  animation: back 600ms;
+  
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+
+.ribbon i:last-child {
+  bottom: -20px;
+  left: auto;
+  right: -60px;
+  border: 30px solid #1D53C0;
+  border-right-color: transparent;
+
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+p {
+  text-align: center;
+  color: #aaa;
+}
+
+/* animations */
+
+@-webkit-keyframes main {
+  0% { -webkit-transform: scaleX(0); }
+  100% { -webkit-transform: scaleX(1); }
+}
+
+@-webkit-keyframes edge {
+  0%, 50% { -webkit-transform: scaleY(0); }
+  100% { -webkit-transform: scaleY(1); }
+}
+
+@-webkit-keyframes back {
+  0%, 75% { -webkit-transform: scaleX(0); }
+  100% { -webkit-transform: scaleX(1); }
+}
+
+
+@-moz-keyframes main {
+  0% { -moz-transform: scaleX(0); }
+  100% { -moz-transform: scaleX(1); }
+}
+
+@-moz-keyframes edge {
+  0%, 50% { -moz-transform: scaleY(0); }
+  100% { -moz-transform: scaleY(1); }
+}
+
+@-moz-keyframes back {
+  0%, 75% { -moz-transform: scaleX(0); }
+  100% { -moz-transform: scaleX(1); }
+}
+
+
+@keyframes main {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+@keyframes edge {
+  0%, 50% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes back {
+  0%, 75% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+     </style>
+    <meta charset="UTF-8">
+    <title>Faculty Evalaution System</title>
+</head>
+<body>
+    <div class="ribbon">
+        Welcome to Faculty Review System
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      
+      
+   
+<div align="center">
+   
+    <h2>Upload CSV File</h2>
+    <form method=post enctype=multipart/form-data>
+        <p><input type=file name=file>
+            <input type=submit value=Upload>
+        </p>
+    </form>
+    <h1>Predict sentiment<h1>
+</div>
+
+<div align="center" class="ml-container">
+
+	<form action="{{ url_for('predict')}}" method="POST">
+	<p>Enter Your Message Here</p>
+	<p>
+	<!-- <input type="text" name="comment"/> -->
+	<textarea name="message" rows="6" cols="50"></textarea>
+	<br/>
+    <button type="submit" value="predict" class="btn btn-primary btn-lg btn-block">            Predict              </button>
+
+	
+</form>
+	</p>
+</div>
+
+</body>
+</html>
+<script>
+$('.ribbon').on('click', function() {	
+    var self = $(this),
+        newone = self.clone(true);
+    
+    self.before(newone);
+    $("." + self.attr("class") + ":last").remove();
+  });
+  </script>
